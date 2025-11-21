@@ -14,7 +14,7 @@ underscore_split_mode = 'underscore_split'
 regex_match_mode = 'regex_match'
 conventional_commit_regex = r'^(?P<type>build|chore|ci|docs|feat|fix|perf|refactor|style|test)(\((?P<scope>.+)\))?: (?P<subject>.+)'
 
-def update_commit_message(filename, regex, mode, format_string, conventional_commits):
+def update_commit_message(filename, regex, mode, format_string, conventional_commits=False):
     with io.open(filename, 'r+') as fd:
         contents = fd.readlines()
         commit_msg = contents[0].rstrip('\r\n')
