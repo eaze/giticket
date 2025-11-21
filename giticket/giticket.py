@@ -12,9 +12,9 @@ import six
 
 underscore_split_mode = 'underscore_split'
 regex_match_mode = 'regex_match'
-conventional_commit_regex = r'^(?P<type>build|chore|ci|docs|feat|fix|perf|refactor|style|test)(\((?P<scope>.+)\))?: (?P<subject>.+)'
+conventionalcommit_regex = r'^(?P<type>build|chore|ci|docs|feat|fix|perf|refactor|style|test)(\((?P<scope>.+)\))?: (?P<subject>.+)'
 
-def update_commit_message(filename, regex, mode, format_string, conventional_commits=False):
+def update_commit_message(filename, regex, mode, format_string, conventionalcommits=False):
     with io.open(filename, 'r+') as fd:
         contents = fd.readlines()
         commit_msg = contents[0].rstrip('\r\n')
@@ -31,7 +31,7 @@ def update_commit_message(filename, regex, mode, format_string, conventional_com
                 tickets = [branch.split(six.text_type('_'))[0]]
             tickets = [t.strip() for t in tickets]
 
-            if conventional_commits and (match := re.match(conventional_commit_regex, commit_msg)):
+            if conventionalcommits and (match := re.match(conventionalcommit_regex, commit_msg)):
                 # If the commit message matches the Conventional Commits spec, we can use the captured groups.
                 type = match.group('type')
                 scope = match.group('scope')

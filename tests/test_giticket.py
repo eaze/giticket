@@ -127,12 +127,12 @@ def test_ci_message_with_nl_regex_match_mode(mock_branch_name, msg, tmpdir):
 # create a unit test to verify that if the --conventionalcommits flag is set,
 # the commit message is updated according to the conventional commit format
 @mock.patch(TESTING_MODULE + '.get_branch_name')
-def test_update_commit_message_conventional_commits(mock_branch_name, tmpdir):
+def test_update_commit_message_conventionalcommits(mock_branch_name, tmpdir):
     mock_branch_name.return_value = "JIRA-5678_new_feature"
     path = tmpdir.join('file.txt')
     path.write("feat: add new feature")
     update_commit_message(six.text_type(path), r'[A-Z]+-\d+',
-                          'regex_match', '{commit_msg}', conventional_commits=True)
+                          'regex_match', '{commit_msg}', conventionalcommits=True)
     assert path.read() == "feat(JIRA-5678): add new feature\n"
 
 @pytest.mark.parametrize('msg', (
