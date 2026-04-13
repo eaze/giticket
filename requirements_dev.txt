@@ -10,5 +10,5 @@ twine==1.12.1
 six
 mock
 
-pytest==3.8.2
+pytest==9.0.3
 pytest-runner==4.2
